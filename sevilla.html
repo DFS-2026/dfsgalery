@@ -76,20 +76,40 @@
 
 <script>
   const CLOUD_NAME = "pkegocbt";
+const carpeta = "DFS/Sevilla FC";
 
-  const carpeta = "Sevilla FC";
+const gallery = document.getElementById("gallery");
 
-  const gallery = document.getElementById("gallery");
+const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${encodeURIComponent(carpeta)}.json`;
 
-  /*
-    Las fotos se cargarán desde Cloudinary.
-  */
+fetch(url)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("No se pudieron cargar las fotos");
+    }
+    return response.json();
+  })
+  .then(data => {
+    gallery.innerHTML = "";
 
-  gallery.innerHTML = `
-    <p style="grid-column:1/-1;text-align:center;color:#aaa;">
-      Galería Sevilla FC
-    </p>
-  `;
+    data.resources.forEach(photo => {
+      const img = document.createElement("img");
+
+      img.src = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${photo.public_id}.${photo.format}`;
+
+      gallery.appendChild(img);
+    });
+  })
+  .catch(error => {
+    console.error(error);
+
+    gallery.innerHTML = `
+      <p style="grid-column:1/-1;text-align:center;color:#aaa;">
+        No se pudieron cargar las fotos.
+      </p>
+    `;
+  });
+  
 </script>
 
 </body>
