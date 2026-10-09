@@ -75,6 +75,20 @@
 <div id="gallery" class="gallery"></div>
 
 const gallery = document.getElementById("gallery"); const fotos = [ "https://res.cloudinary.com/pkegocbt/image/upload/v1791310699/IMG-20260723-WA0017.jpg" ]; gallery.innerHTML = ""; fotos.forEach(function(url) { const img = document.createElement("img"); img.src = url; img.alt = "Camiseta Sevilla FC"; gallery.appendChild(img); }); 
+<script>
+const gallery = document.getElementById("gallery");
 
+const fotos = [
+  "https://res.cloudinary.com/pkegocbt/image/upload/v1791310699/IMG-20260723-WA0017.jpg"
+];
+
+fotos.forEach(function(url) {
+  const img = document.createElement("img");
+  img.src = url;
+  img.alt = "Camiseta Sevilla FC";
+  img.style.width = "100%";
+  gallery.appendChild(img);
+});
+</script>
 </body>
 </html>
