@@ -74,43 +74,7 @@
 
 <div id="gallery" class="gallery"></div>
 
-<script>
-  const CLOUD_NAME = "pkegocbt";
-const carpeta = "DFS/Sevilla FC";
-
-const gallery = document.getElementById("gallery");
-
-const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${encodeURIComponent(carpeta)}.json`;
-
-fetch(url)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("No se pudieron cargar las fotos");
-    }
-    return response.json();
-  })
-  .then(data => {
-    gallery.innerHTML = "";
-
-    data.resources.forEach(photo => {
-      const img = document.createElement("img");
-
-      img.src = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${photo.public_id}.${photo.format}`;
-
-      gallery.appendChild(img);
-    });
-  })
-  .catch(error => {
-    console.error(error);
-
-    gallery.innerHTML = `
-      <p style="grid-column:1/-1;text-align:center;color:#aaa;">
-        No se pudieron cargar las fotos.
-      </p>
-    `;
-  });
-  
-</script>
+const gallery = document.getElementById("gallery"); const fotos = [ "https://res.cloudinary.com/pkegocbt/image/upload/v1791310699/IMG-20260723-WA0017.jpg" ]; gallery.innerHTML = ""; fotos.forEach(function(url) { const img = document.createElement("img"); img.src = url; img.alt = "Camiseta Sevilla FC"; gallery.appendChild(img); }); 
 
 </body>
 </html>
