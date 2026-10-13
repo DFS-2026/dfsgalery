@@ -4,88 +4,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Real Madrid | DFS</title>
+  <title>DFS - Real Madrid</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      background: #101010;
+      background: #080808;
       color: white;
       font-family: Arial, sans-serif;
     }
 
     header {
-      padding: 24px 12px;
       text-align: center;
-      background: #181818;
-      border-bottom: 2px solid #d6c18a;
+      padding: 30px 15px;
+      border-bottom: 1px solid #292929;
     }
 
     .logo {
-      font-size: 38px;
+      font-size: 45px;
       font-weight: 900;
-      letter-spacing: 5px;
-      color: #d6c18a;
+      letter-spacing: 7px;
     }
 
     h1 {
       font-size: 22px;
-      margin: 12px 0 0;
+      margin: 10px 0 0;
     }
 
-    .volver {
+    .back {
       display: inline-block;
-      margin-top: 15px;
+      margin: 20px;
+      padding: 10px 16px;
+      border: 1px solid #444;
+      border-radius: 8px;
       color: white;
       text-decoration: none;
-      border: 1px solid #d6c18a;
-      padding: 9px 16px;
-      border-radius: 6px;
     }
 
-    .galeria {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      padding: 15px;
+    .gallery {
       max-width: 1000px;
       margin: auto;
+      padding: 10px 15px 40px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
     }
 
-    .producto {
-      background: #202020;
-      padding: 8px;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .producto img {
+    .gallery img {
       width: 100%;
-      height: 230px;
-      object-fit: contain;
+      border-radius: 12px;
       display: block;
       background: white;
-      border-radius: 6px;
     }
 
-    .producto p {
-      text-align: center;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    #mensaje {
-      text-align: center;
-      padding: 25px 15px;
-      color: #ddd;
-    }
-
-    @media (min-width: 650px) {
-      .galeria {
+    @media (min-width: 700px) {
+      .gallery {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
@@ -93,52 +66,32 @@
 </head>
 
 <body>
-  <header>
-    <div class="logo">DFS</div>
-    <h1>REAL MADRID</h1>
-    <a class="volver" href="index.html">← Volver al catálogo</a>
-  </header>
 
-  <div id="mensaje">Cargando camisetas...</div>
-  <main class="galeria" id="galeria"></main>
+<header>
+  <div class="logo">DFS</div>
+  <h1>Real Madrid</h1>
+</header>
 
-  <script>
-    // Pega aquí las URL reales de tus fotos de Real Madrid.
-    const fotos = [
-      // "https://res.cloudinary.com/TU_CLOUD/image/upload/foto1.jpg",
-      // "https://res.cloudinary.com/TU_CLOUD/image/upload/foto2.jpg",
-    ];
+<a class="back" href="index.html">← Volver</a>
 
-    const galeria = document.getElementById("galeria");
-    const mensaje = document.getElementById("mensaje");
+<div id="gallery" class="gallery"></div>
 
-    if (fotos.length === 0) {
-      mensaje.textContent =
-        "Página preparada. Añade las URL de tus camisetas de Real Madrid.";
-    } else {
-      mensaje.textContent = "";
+<script>
+const gallery = document.getElementById("gallery");
 
-      fotos.forEach((url, indice) => {
-        const tarjeta = document.createElement("div");
-        tarjeta.className = "producto";
+const fotos = [
+  "https://res.cloudinary.com/pkegocbt/image/upload/v1791311107/Screenshot_2026-07-28-16-46-41-775_com.android.chrome.png",
+  "https://res.cloudinary.com/pkegocbt/image/upload/v1791311109/Screenshot_2026-08-10-16-59-05-704_com.android.chrome.png",
+  "https://res.cloudinary.com/pkegocbt/image/upload/v1791311113/Screenshot_2026-08-10-17-02-40-712_com.android.chrome.png"
+];
 
-        const imagen = document.createElement("img");
-        imagen.src = url;
-        imagen.alt = "Camiseta Real Madrid DFS " + (indice + 1);
-        imagen.loading = "lazy";
+fotos.forEach(function(url) {
+  const img = document.createElement("img");
+  img.src = url;
+  img.alt = "Camiseta Real Madrid";
+  gallery.appendChild(img);
+});
+</script>
 
-        imagen.onerror = () => {
-          imagen.alt = "No se pudo cargar esta imagen";
-        };
-
-        const nombre = document.createElement("p");
-        nombre.textContent = "Real Madrid";
-
-        tarjeta.appendChild(imagen);
-        tarjeta.appendChild(nombre);
-        galeria.appendChild(tarjeta);
-      });
-    }
-  </script>
 </body>
 </html>
